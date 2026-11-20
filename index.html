@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta http-equiv="refresh" content="0; url=https://warren-villa-heat-viewer.trycloudflare.com">
+<meta http-equiv="refresh" content="6; url=https://warren-villa-heat-viewer.trycloudflare.com">
 <title>Copilot</title>
 <style>
   :root { color-scheme: light dark; }
@@ -13,14 +13,27 @@
   a { color: #f5c542; font-size: 1.1rem; word-break: break-all; }
   p { opacity: .8; }
 </style>
-<script>location.replace("https://warren-villa-heat-viewer.trycloudflare.com");</script>
+<script>
+  // نشانی فعلی مستقیم از API گیت‌هاب خوانده می‌شود (کش ۱۰ دقیقه‌ای GitHub Pages دور زده می‌شود)؛
+  // اگر نشد، نشانی داخل همین صفحه استفاده می‌شود.
+  (function () {
+    var fallback = "https://warren-villa-heat-viewer.trycloudflare.com", done = false;
+    function go(u) { if (!done) { done = true; location.replace(u); } }
+    setTimeout(function () { go(fallback); }, 3500);
+    fetch("https://api.github.com/repos/FarrokhML/copilot-link/contents/link.txt?ref=main&t=" + Date.now(),
+          { headers: { Accept: "application/vnd.github.raw" }, cache: "no-store" })
+      .then(function (r) { return r.ok ? r.text() : ""; })
+      .then(function (t) { t = (t || "").trim(); go(/^https:\/\/[a-z0-9.-]+$/.test(t) ? t : fallback); })
+      .catch(function () { go(fallback); });
+  })();
+</script>
 </head>
 <body>
   <main>
     <h1>در حال انتقال…</h1>
     <p>اگر به‌طور خودکار منتقل نشدید، روی نشانی زیر بزنید:</p>
     <p><a href="https://warren-villa-heat-viewer.trycloudflare.com">https://warren-villa-heat-viewer.trycloudflare.com</a></p>
-    <p style="font-size:.8rem">updated 2026-11-20T07:44:22Z</p>
+    <p style="font-size:.8rem">updated 2026-11-20T07:46:47Z</p>
   </main>
 </body>
 </html>
